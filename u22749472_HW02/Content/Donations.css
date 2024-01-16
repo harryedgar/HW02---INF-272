@@ -1,0 +1,29 @@
+﻿/* Add a custom font family here */
+body {
+    font-family: 'Shantell Sans', sans-serif; /* Replace 'YourFontName' with the actual font name */
+    padding: 20px;
+    font-size: 20px;
+}
+
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 50px;
+    margin-right: 50px;
+    height: 400px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.heading {
+    margin-left: 120px;
+}
+

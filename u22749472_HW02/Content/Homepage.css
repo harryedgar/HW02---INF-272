@@ -1,0 +1,73 @@
+﻿/*HomePage */
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* Add a custom font family here */
+body {
+    font-family: 'Shantell Sans', sans-serif; /* Replace 'YourFontName' with the actual font name */
+    padding: 20px;
+    font-size: 20px;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 30px;
+    font-size: 100px;
+    text-align: center;
+    background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style for rounded buttons with white background */
+.rounded-button {
+    display: inline-block;
+    height: 35px;
+    border: none;
+    border: 2px solid black; /* Add a black border */
+    border-radius: 20px; /* Adjust the value to control the roundness */
+    background-color: white;
+    color: #333; /* Text color */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease; /* Add a smooth transition for hover effect */
+}
+
+    /* Hover effect to change background color */
+    .rounded-button:hover {
+        background-color: orangered; /* Change to a slightly different color on hover */
+    }

@@ -1,0 +1,127 @@
+﻿@using u22749472_HW02.Models
+@model u22749472_HW02.Models.DataViewModel
+
+@{
+    ViewBag.Title = "PostaPet";
+}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Shantell+Sans" rel="stylesheet">
+@*CSS for HomePage*@
+<link rel="stylesheet" type="text/css" href="~/Content/PostaPet.css">
+
+
+<h2>Post a Pet</h2>
+@using (Html.BeginForm("PostaPet", "Data", FormMethod.Post))
+{
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+
+                    @*Column 1*@
+                    <div class="col-md-3">
+                        <h3 class="card-title" style="color:orangered">Your Details</h3>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserList, "User")
+                            <select id="petTypeSelect" class="form-control">
+                                @foreach (var list in Model.UserList)
+                                {
+                                    <option id="FullName" value="@list.FullName">@list.FullName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserList, "Phone Number")
+                            <select id="petTypeSelect" class="form-control">
+                                @foreach (var list in Model.UserList)
+                                {
+                                    <option id="Phone" value="@list.Phone">@list.Phone</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+
+                    @*Column 2*@
+                    <div class="col-md-3">
+                        <h3 class="card-title" style="color:orangered">Pet Details</h3>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserList, "Pet Name")
+                            @Html.TextBox("PetName", null, new { @class = "form-control", @type = "text" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PetTypeList, "Pet Type")
+                            <select id="petTypeSelect" class="form-control">
+                                @foreach (var list in Model.PetTypeList)
+                                {
+                                    <option id="TypeDescription" value="@list.TypeDescription">@list.TypeDescription</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.BreedList, "Pet Breed")
+                            <select id="petTypeSelect" class="form-control">
+                                @foreach (var list in Model.BreedList)
+                                {
+                                    <option id="BreedDescription" value="@list.BreedDescription">@list.BreedDescription</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LocationList, "Pet Type")
+                            <select id="petTypeSelect" class="form-control">
+                                @foreach (var list in Model.LocationList)
+                                {
+                                    <option id="LocationDescription" value="@list.LocationDescription">@list.LocationDescription</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    @*Column 3*@
+                    <div class="col-md-3">
+                        <h3 class="card-title" style="color:orangered">Additional Pet Details</h3>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PetList, "Pet Age")
+                            @Html.TextBox("PetAge", null, new { @class = "form-control", @type = "text" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PetList, "Pet Weight")
+                            @Html.TextBox("PetWeight", null, new { @class = "form-control", @type = "text" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GenderList, "Pet Gender")
+                            <select id="petTypeSelect" class="form-control">
+                                @foreach (var list in Model.GenderList)
+                                {
+                                    <option id="GenderDescription" value="@list.GenderDescription">@list.GenderDescription</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    @*Coulmn 4*@
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h3 class="card-title" style="color:orangered">Upload an Image</h3>
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.PetList, "Image")*@
+                            <a href="~/Views/Data/PostaPet.cshtml">~/Views/Data/PostaPet.cshtml</a>
+                            <input type="file" name="PetImage" id="PetImage"   />
+                        </div>
+
+                        <button class="rounded-button" type="submit">Add</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ </div>
+
+}

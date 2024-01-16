@@ -1,0 +1,104 @@
+﻿@using u22749472_HW02.Models
+@model u22749472_HW02.Models.DataViewModel
+
+
+@{
+    ViewBag.Title = "Donations";
+}
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Shantell+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+@*CSS for HomePage*@
+<link rel="stylesheet" type="text/css" href="~/Content/Donations.css">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 style="Color:orange">Donate Now!</h1>
+            <h2 class="heading">And help us reach our goal!</h2>
+            <br />
+
+            <h2 style="Color: orangered">Why Donate ??</h2>
+            <p>
+                Your generous donations make a world of difference in the lives of
+                countless furry companions. By supporting our pet website, you contribute
+                directly to the welfare and well-being of animals in need.
+            </p>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserList, "Select a User")
+                <select class="form-control">
+                    @foreach (var list in Model.UserList)
+                    {
+                        <option value="@list.FullName">@list.FullName</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserList, "Select a phone number")
+                <select class="form-control">
+                    @foreach (var list in Model.UserList)
+                    {
+                        <option value="@list.Phone">@list.Phone</option>
+                    }
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DonationsList, "Donation amount")
+                @Html.TextBox("Donation", null, new { @class = "form-control", @type = "text" })
+                @Html.ValidationMessageFor(model => model.DonationsList, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" id="donateButton" class="btn btn-success">Donate Now</button>
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+<p class="par"><b> Donation Goal: R15 000 </b></p>
+<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="15000" style="width: 40%; background-color: green; color: blueviolet; border: 1px solid black;">0%</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#donateButton").click(function () {
+            var donationAmount = parseInt($("#donationAmount").val()) || 0; // Get the donation amount from the textbox
+
+            // Update the progress bar
+            var progressBar = $("#progress-bar");
+            var currentValue = progressBar.attr("aria-valuenow");
+            var maxValue = progressBar.attr("aria-valuemax");
+
+            var newValue = Math.min(parseInt(currentValue) + donationAmount, maxValue); // Add the donation to the current value
+            progressBar.attr("aria-valuenow", newValue);
+            progressBar.css("width", (newValue / maxValue * 100) + "%");
+            progressBar.text(newValue + "%");
+        });
+    });
+</script>
+
+
+
+
+
+
+

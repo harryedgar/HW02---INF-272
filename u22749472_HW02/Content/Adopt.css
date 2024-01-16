@@ -1,0 +1,60 @@
+﻿/* Add a custom font family here */
+body {
+    font-family: 'Shantell Sans', sans-serif; /* Replace 'YourFontName' with the actual font name */
+    padding: 20px;
+    font-size: 20px;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+.dropdown-container > div {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Style to add some spacing between the labels and dropdowns */
+.dropdown-container select {
+    margin-top: 5px;
+}
+
+/* Style for rounded buttons with white background */
+.rounded-button {
+    display: inline-block;
+    height: 40px;
+    width: 250px;
+    border: none;
+    border: 2px solid black; /* Add a black border */
+    border-radius: 20px; /* Adjust the value to control the roundness */
+    background-color: white;
+    color: #333; /* Text color */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease; /* Add a smooth transition for hover effect */
+}
+
+    /* Hover effect to change background color */
+    .rounded-button:hover {
+        background-color: dodgerblue; /* Change to a slightly different color on hover */
+    }

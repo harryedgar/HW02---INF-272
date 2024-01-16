@@ -1,0 +1,132 @@
+﻿@using u22749472_HW02.Models
+@model u22749472_HW02.Models.DataViewModel
+
+
+@{
+    ViewBag.Title = "Pet";
+}
+
+@*CSS for HomePage*@
+<link rel="stylesheet" type="text/css" href="~/Content/Pets.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/javascript" href="~/Content/Pet.js" />
+
+
+<h1>Pets</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            @Html.LabelFor(model => model.PetTypeList, "Pet Type")
+            <select id="type" class="form-control">
+                @foreach (var list in Model.PetTypeList)
+                {
+                    <option value="@list.TypeDescription">@list.TypeDescription</option>
+                }
+            </select>
+
+
+            @Html.LabelFor(model => model.BreedList, "Breed")
+            <select id="breed" class="form-control">
+                @foreach (var list in Model.BreedList)
+                {
+                    <option value="@list.BreedDescription">@list.BreedDescription</option>
+                }
+            </select>
+
+
+            @Html.LabelFor(model => model.LocationList, "Location")
+            <select id="location" class="form-control">
+                @foreach (var list in Model.LocationList)
+                {
+                    <option value="@list.LocationDescription">@list.LocationDescription</option>
+                }
+            </select>
+
+            <button id="searchButton" class="btn btn-primary">Search</button>
+            <button id="clearButton" class="btn btn-primary">Clear</button>
+        </div>
+    </div>
+</div>
+
+
+
+@*Cards for pets to display*@
+<div class="container" style="background-color:white">
+    <div class="row" id="petCards">
+        @using (Html.BeginForm("AdoptPet", "Data", FormMethod.Post))
+        {
+            foreach (var displayedpet in Model.PetList)
+            {
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <a href="@Url.Action("Adopt","Data", new {petid = displayedpet.PetID })">
+                                <img src="~/Images/@displayedpet.PetImage" class="card-img-top" width="300" height="250" />
+                            </a>
+                            <p>@displayedpet.AdoptionStatu.StatusDescription</p>
+                            <h1 style="color:orangered">@displayedpet.PetName</h1>
+                            <p>@displayedpet.Location.LocationDescription</p>
+                            <p>@displayedpet.PetFullStory</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        var searchBtn = $("#searchButton");
+        var clearBtn = $("#clearButton");
+        var typeDrop = $("#type");
+        var breedDrop = $("#breed");
+        var locationDrop = $("#location");
+
+        searchBtn.click(function () {
+            var selectedType = typeDrop.val().toLowerCase();
+            var selectedBreed = breedDrop.val().toLowerCase();
+            var selectedLocation = locationDrop.val().toLowerCase();
+
+            console.log("Selected Type:", selectedType);
+            console.log("Selected Breed:", selectedBreed);
+            console.log("Selected Location:", selectedLocation);
+
+            $('.pet-card').each(function () {
+                var card = $(this);
+                var cardType = card.data("type").toLowerCase();
+                var cardBreed = card.data('breed').toLowerCase();
+                var cardLocation = card.data('location').toLowerCase();
+
+                var typeMatch = selectedType === "" || cardType === selectedType;
+                var breedMatch = selectedBreed === "" || cardBreed === selectedBreed;
+                var locationMatch = selectedLocation === "" || cardLocation === selectedLocation;
+
+                if (typeMatch && breedMatch && locationMatch) {
+                    card.show();
+                } else {
+                    card.hide();
+                }
+            });
+
+            console.log("Shown cards:", $('.pet-card:visible').length);
+            console.log("Hidden cards:", $('.pet-card:hidden').length);
+        });
+
+        clearBtn.click(function () {
+            $(".pet-card").show();
+            typeDrop.val("");
+            breedDrop.val("");
+            locationDrop.val("");
+        });
+    });
+</script>
+
+
+    
+

@@ -1,0 +1,82 @@
+﻿@using u22749472_HW02.Models
+@model u22749472_HW02.Models.DataViewModel
+@{
+    ViewBag.Title = "Adopt";
+}
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Shantell+Sans" rel="stylesheet">
+@*CSS for HomePage*@
+<link rel="stylesheet" type="text/css" href="~/Content/Adopt.css">
+
+
+
+
+<div class="container">
+    <div style="text-align:center">
+        <h2>Hi my name @Model.selectedpet.PetName </h2>
+        <p>I am looking for my dream house</p>
+    </div>
+
+    <div class="row">
+        <div class="column" style="background-color:white;">
+            <p>@Model.selectedpet.Location.LocationDescription Age: @Model.selectedpet.PetAge Weight: @Model.selectedpet.PetWeight @Model.selectedpet.Gender.GenderDescription </p>
+            <h2 style="color:orangered">My Story</h2>
+            <p>@Model.selectedpet.PetFullStory</p>
+        </div>
+
+        <div class="column" style="background-color: white;">
+            <img src="~/Images/@Model.selectedpet.PetImage" style="width:100%">
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Adopt", "Data", FormMethod.Post))
+{
+    <h2 style="color:orangered">User Details</h2>
+    @Html.LabelFor(model => model.UserList, "User Name")
+    <select class="form-control">
+        @foreach (var list in Model.UserList)
+        {
+            <option value="@list.FullName">@list.FullName</option>
+        }
+    </select>
+
+    @Html.LabelFor(model => model.UserList, "Phone Number")
+    <select class="form-control">
+        @foreach (var list in Model.UserList)
+        {
+            <option value="@list.Phone">@list.Phone</option>
+        }
+    </select>
+
+    <input type="hidden" , id="PetID"  name="PetID" value="@Model.selectedpet.PetID" />
+    <button type="submit" id="Adopt" class="rounded">Adopt Now</button>
+
+    @*if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div>@ViewBag.Message</div>
+    }*@
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

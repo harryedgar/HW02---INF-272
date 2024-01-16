@@ -1,0 +1,51 @@
+﻿@using u22749472_HW02.Models
+@model u22749472_HW02.Models.DataViewModel
+
+
+@{
+    ViewBag.Title = "HomePage";
+}
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Shantell+Sans" rel="stylesheet">
+    @*CSS for HomePage*@
+    <link rel="stylesheet" type="text/css" href="~/Content/Homepage.css">
+
+
+    <div class="header">
+        <h2 style="font-size: 60px">Adopt Love, foster happiness.</h2>
+        <div class="column-33">
+            <img src="~/Images/dog lying down homepage.jpg" width="600" height="300">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <h2 style="color:orangered">What we do?</h2>
+                <p>
+                    With a focus on watching the right pet with the right family,
+                    RescuePet makes it easy to adopt love and foster happiness.
+                </p>
+                <a class="btn btn-primary" href="@Url.Action("Pet", "Data")">View Pets</a>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card">
+                @{
+                    var adoptedPets = Model.PetList.Where(p => p.StatusID == 2).ToList();
+                }
+                <h2>Recent Adoptions @adoptedPets.Count</h2>
+
+                @foreach (var items in adoptedPets)
+                {
+                    <p>
+                        @Html.DisplayFor(modelItem => items.PetName) was adopted by  @Html.DisplayFor(modelItem => items.User.FullName)
+
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
